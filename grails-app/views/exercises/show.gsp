@@ -28,14 +28,21 @@
                             <td valign="top" class="value">${fieldValue(bean:exerciseInstance, field:'id')}</td>
                             
                         </tr>
+                        
+                        <tr class="prop">
+                            <td valign="top" class="name">Tytuł:</td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:exerciseInstance, field:'title')}</td>
+                            
+                        </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name">Description:</td>
+                            <td valign="top" class="name">Opis:</td>
                             
                             <td valign="top" class="value">${fieldValue(bean:exerciseInstance, field:'description')}</td>
                             
                         </tr>
-                    
+                    <!--
                         <tr class="prop">
                             <td valign="top" class="name">Participations:</td>
                             
@@ -48,24 +55,21 @@
                             </td>
                             
                         </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">Title:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:exerciseInstance, field:'title')}</td>
-                            
-                        </tr>
+                    -->
+                        
                     
                     </tbody>
                 </table>
             </div>
             <div class="buttons">
-                <g:form>
-                    <input type="hidden" name="id" value="${exerciseInstance?.id}" />
-                    <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-                    <span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
-                </g:form>
+              <span class="button"><g:link class="edit" action="edit" id="${exerciseInstance?.id}">Edytuj</g:link></span>
+              <span class="button"><g:link class="delete" action="delete" id="${menuInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
             </div>
         </div>
     </body>
 </html>
+
+            <g:if test="${menuInstance && menuInstance.id}">
+              <span class="menuButton"><g:link class="edit" action="edit" id="${menuInstance?.id}">Edytuj pozycję</g:link></span>
+              <span class="menuButton"><g:link class="delete" action="delete" id="${menuInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń pozycję</g:link></span>
+            </g:if>
