@@ -14,9 +14,6 @@
         </div>
         <div class="body">
             <h1>Edit Participation</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${participationInstance}">
             <div class="errors">
                 <g:renderErrors bean="${participationInstance}" as="list" />

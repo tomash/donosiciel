@@ -4,18 +4,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Participation List</title>
+        <title>Lista Udziałów</title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="create" action="create">New Participation</g:link></span>
+            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Główna</a></span>
+            <span class="menuButton"><g:link class="create" action="create">Dodaj Udział</g:link></span>
         </div>
         <div class="body">
-            <h1>Participation List</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
+            <h1>Lista Udziałów</h1>
             <div class="list">
                 <table>
                     <thead>
@@ -23,9 +20,9 @@
                         
                    	        <g:sortableColumn property="id" title="Id" />
                         
-                   	        <g:sortableColumn property="endMark" title="End Mark" />
+                   	        <g:sortableColumn property="endMark" title="Ocena Końcowa" />
                         
-                   	        <g:sortableColumn property="startDateTime" title="Start Date Time" />
+                   	        <g:sortableColumn property="startDateTime" title="Data rozpoczęcia" />
                         
                         </tr>
                     </thead>

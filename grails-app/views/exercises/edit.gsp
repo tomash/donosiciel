@@ -12,9 +12,6 @@
         </div>
         <div class="body">
             <h1>Edytuj Ćwiczenie</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${exerciseInstance}">
             <div class="errors">
                 <g:renderErrors bean="${exerciseInstance}" as="list" />

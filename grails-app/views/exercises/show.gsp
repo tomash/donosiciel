@@ -4,19 +4,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Show Exercise</title>
+        <title>Pokaż Ćwiczenie</title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-            <span class="menuButton"><g:link class="list" action="list">Exercise List</g:link></span>
-            <span class="menuButton"><g:link class="create" action="create">New Exercise</g:link></span>
+            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Główna</a></span>
+            <span class="menuButton"><g:link class="list" action="list">Ćwiczenia</g:link></span>
+            <span class="menuButton"><g:link class="create" action="create">Dodaj Ćwiczenie</g:link></span>
         </div>
         <div class="body">
-            <h1>Show Exercise</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
+            <h1>Pokaż Ćwiczenie</h1>
             <div class="dialog">
                 <table>
                     <tbody>

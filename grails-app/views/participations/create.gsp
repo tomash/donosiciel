@@ -2,18 +2,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Create Participation</title>         
+        <title>Dodaj Udział</title>         
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
+            <span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Głowna</a></span>
             <span class="menuButton"><g:link class="list" action="list">Udziały</g:link></span>
         </div>
         <div class="body">
             <h1>Stwórz udział</h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${participationInstance}">
             <div class="errors">
                 <g:renderErrors bean="${participationInstance}" as="list" />
@@ -38,7 +35,7 @@
                                     <label for="startDateTime">Dzień rozpoczęcia:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'startDateTime','errors')}">
-                                    <g:datePicker name="startDateTime" value="${participationInstance?.startDateTime}" ></g:datePicker>
+                                    <g:datePicker name="startDateTime" precision="day" value="${participationInstance?.startDateTime}" ></g:datePicker>
                                 </td>
                             </tr>
                             
@@ -55,7 +52,7 @@
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><input class="save" type="submit" value="Create" /></span>
+                    <span class="button"><input class="save" type="submit" value="Dodaj" /></span>
                 </div>
             </g:form>
         </div>

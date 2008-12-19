@@ -11,7 +11,20 @@
         <div id="spinner" class="spinner" style="display:none;">
             <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
         </div>	
-        <div class="logo"><img src="${createLinkTo(dir:'images',file:'grails_logo.jpg')}" alt="Grails" /></div>	
+        <div class="logo"><img src="${createLinkTo(dir:'images',file:'donosiciel_logo.jpg')}" alt="Donosiciel" /></div>
+        <g:if test="${flash.message}">
+          <div class="message">${flash.message}</div>
+        </g:if>
+        
+        <g:if test="${session.user}">
+          Zalogowany jako ${session.user.email}.
+          <g:link controller="users" action="logout">Wyloguj</g:link>
+        </g:if>
+        <g:else>
+          Niezalogowany.
+          <g:link controller="users" action="login">Zaloguj</g:link>
+        </g:else>
+        
         <g:layoutBody />		
     </body>	
 </html>
