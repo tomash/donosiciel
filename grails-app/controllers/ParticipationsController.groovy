@@ -22,12 +22,13 @@ class ParticipationsController {
 
   def show = {
       def participationInstance = Participation.get( params.id )
-
+      def postsList = Post.findAll("from Post as p where p.participation=? order by createdAt ASC", [participationInstance])
+      
       if(!participationInstance) {
           flash.message = "Participation not found with id ${params.id}"
           redirect(action:list)
       }
-      else { return [ participationInstance : participationInstance ] }
+      else { return [ participationInstance : participationInstance, postsList : postsList ] }
   }
 
   def delete = {

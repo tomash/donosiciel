@@ -60,7 +60,7 @@
             </div>
             <div class="buttons">
               <span class="button"><g:link class="edit" action="edit" id="${exerciseInstance?.id}">Edytuj</g:link></span>
-              <span class="button"><g:link class="delete" action="delete" id="${menuInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
+              <span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
             </div>
         </div>
     </body>

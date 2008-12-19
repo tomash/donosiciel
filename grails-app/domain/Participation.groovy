@@ -5,4 +5,5 @@ class Participation {
   
   static belongsTo = Exercise
   static optionals = ["endMark"]
+  static hasMany = [posts:Post]
 }
