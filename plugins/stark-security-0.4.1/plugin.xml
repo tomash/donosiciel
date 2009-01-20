@@ -1,0 +1,15 @@
+<plugin name='stark-security' version='0.4.1'>
+  <author>Ola Bildtsen</author>
+  <authorEmail>info@bildtsen.com</authorEmail>
+  <title>A robust, convention-based implementation of Spring Security for Grails</title>
+  <description>The Stark Security plugin -- 'stark' as in simple, but also 'strong' in Swedish -- is an implementation of
+Spring Security for Grails.  It employs a lock-down approach to security, meaning all access is
+disallowed by default.  Developers open access for roles on a controller-method basis, and non-controller
+URLs (e.g. /js/**) can be configured separately.  All mappings are read by convention,
+there is no configuration beyond hooking up the desired authentication implementations.
+</description>
+  <documentation>http://grails.org/Stark+Security+Plugin</documentation>
+  <resources>
+    <resource>UrlMappings</resource>
+  </resources>
+</plugin>
