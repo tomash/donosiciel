@@ -3,9 +3,17 @@ class ExercisesController {
   def beforeInterceptor = [action:this.&checkUser,except: ['index','list','show']]
 
   def checkUser() {
-    if(!session.user) {
+    if(!session.user) 
+    {
       // i.e. user not logged in
       redirect(controller:'users',action:'login')
+      return false
+    }
+    if(session.user.role < 2)
+    {
+      // i.e. user is not a teacher or admin
+      flash['message'] = "Próba nieautoryzowanego dostępu"
+      redirect(uri:'/')
       return false
     }
   }
@@ -24,7 +32,7 @@ class ExercisesController {
       def exerciseInstance = Exercise.get( params.id )
 
       if(!exerciseInstance) {
-          flash.message = "Exercise not found with id ${params.id}"
+          flash.message = "Nie znaleziono ćwiczenia o id ${params.id}"
           redirect(action:list)
       }
       else { return [ exerciseInstance : exerciseInstance ] }
@@ -34,11 +42,11 @@ class ExercisesController {
       def exerciseInstance = Exercise.get( params.id )
       if(exerciseInstance) {
           exerciseInstance.delete()
-          flash.message = "Exercise ${params.id} deleted"
+          flash.message = "Ćwiczenie ${params.id} zostało usunięte"
           redirect(action:list)
       }
       else {
-          flash.message = "Exercise not found with id ${params.id}"
+          flash.message = "Nie znaleziono ćwiczenia o ${params.id}"
           redirect(action:list)
       }
   }
@@ -47,7 +55,7 @@ class ExercisesController {
       def exerciseInstance = Exercise.get( params.id )
 
       if(!exerciseInstance) {
-          flash.message = "Exercise not found with id ${params.id}"
+          flash.message = "Nie znaleziono ćwiczenia o ${params.id}"
           redirect(action:list)
       }
       else {
@@ -60,7 +68,7 @@ class ExercisesController {
       if(exerciseInstance) {
           exerciseInstance.properties = params
           if(!exerciseInstance.hasErrors() && exerciseInstance.save()) {
-              flash.message = "Exercise ${params.id} updated"
+              flash.message = "Ćwiczenie ${params.id} zostało zmienione"
               redirect(action:show,id:exerciseInstance.id)
           }
           else {
@@ -68,7 +76,7 @@ class ExercisesController {
           }
       }
       else {
-          flash.message = "Exercise not found with id ${params.id}"
+          flash.message = "Nie znaleziono ćwiczenia o ${params.id}"
           redirect(action:edit,id:params.id)
       }
   }
@@ -82,7 +90,7 @@ class ExercisesController {
   def save = {
       def exerciseInstance = new Exercise(params)
       if(!exerciseInstance.hasErrors() && exerciseInstance.save()) {
-          flash.message = "Exercise ${exerciseInstance.id} created"
+          flash.message = "Ćwiczenie ${exerciseInstance.id} dodane"
           redirect(action:show,id:exerciseInstance.id)
       }
       else {

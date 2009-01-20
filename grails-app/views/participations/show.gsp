@@ -18,31 +18,49 @@
                 <table>
                     <tbody>
 
+                        <tr class="prop">
+                            <td valign="top" class="name">Ćwiczenie:</td>
+                            
+                            <td valign="top" class="value"><g:link class="show" action="show" controller="exercise" id="${participationInstance?.exercise?.id}">${participationInstance.exercise}</g:link></td>
+                        </tr>
                     
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Prowadzący:</td>
+                            
+                            <td valign="top" class="value">${participationInstance.user}</td>
+                        </tr>
+                    <!--
                         <tr class="prop">
                             <td valign="top" class="name">Id:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:participationInstance, field:'id')}</td>
-                            
+                            <td valign="top" class="value">${participationInstance.id}</td>
                         </tr>
-                    
+                    -->
                         <tr class="prop">
                             <td valign="top" class="name">Ocena Końcowa:</td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:participationInstance, field:'endMark')}</td>
+                            <td valign="top" class="value">${participationInstance.endMark}</td>
                             
                         </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name">Rozpoczęte:</td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:participationInstance, field:'startDateTime')}</td>
-                            
+                            <td valign="top" class="value">
+                              <g:formatDate format="yyyy-MM-dd" date="${participationInstance.startDateTime}" />
+                            </td>
                         </tr>
                     
                     </tbody>
                 </table>
             </div>
+            <h3>Studenci:</h3>
+            <ul>
+              <g:each in="${participationInstance.students}" status="i" var="studentInstance">
+              <li>${studentInstance}</li>
+              </g:each>
+            </ul>
+            
             <div class="buttons">
               <span class="button"><g:link class="edit" action="edit" id="${participationInstance?.id}">Edytuj</g:link></span>
               <span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>

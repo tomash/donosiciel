@@ -1,11 +1,20 @@
 class PostsController {
   
-  def beforeInterceptor = [action:this.&checkUser,except: ['index','list','show']]
+  def beforeInterceptor = [action:this.&checkUser, except: ['index','list','show']]
 
   def checkUser() {
-    if(!session.user) {
+    if(!session.user) 
+    {
       // i.e. user not logged in
+      session["original_request"] = params
       redirect(controller:'users',action:'login')
+      return false
+    }
+    if(session.user.role < 1)
+    {
+      // i.e. user is not a student at least
+      flash['message'] = "Próba nieautoryzowanego dostępu"
+      redirect(uri:'/')
       return false
     }
   }

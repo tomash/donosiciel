@@ -3,9 +3,18 @@ class ParticipationsController {
   def beforeInterceptor = [action:this.&checkUser,except: ['index','list','show']]
 
   def checkUser() {
-    if(!session.user) {
+    if(!session.user) 
+    {
       // i.e. user not logged in
+      session["original_request"] = params
       redirect(controller:'users',action:'login')
+      return false
+    }
+    if(session.user.role < 2)
+    {
+      // i.e. user is not a teacher or admin
+      flash['message'] = "Próba nieautoryzowanego dostępu"
+      redirect(uri:'/')
       return false
     }
   }
@@ -25,7 +34,7 @@ class ParticipationsController {
       def postsList = Post.findAll("from Post as p where p.participation=? order by createdAt ASC", [participationInstance])
       
       if(!participationInstance) {
-          flash.message = "Participation not found with id ${params.id}"
+          flash.message = "Nie znaleziono udziału o id ${params.id}"
           redirect(action:list)
       }
       else { return [ participationInstance : participationInstance, postsList : postsList ] }
@@ -35,11 +44,11 @@ class ParticipationsController {
       def participationInstance = Participation.get( params.id )
       if(participationInstance) {
           participationInstance.delete()
-          flash.message = "Participation ${params.id} deleted"
+          flash.message = "Udział ${params.id} usunięty"
           redirect(action:list)
       }
       else {
-          flash.message = "Participation not found with id ${params.id}"
+          flash.message = "Nie znaleziono udziału o id ${params.id}"
           redirect(action:list)
       }
   }
@@ -48,7 +57,7 @@ class ParticipationsController {
       def participationInstance = Participation.get( params.id )
 
       if(!participationInstance) {
-          flash.message = "Participation not found with id ${params.id}"
+          flash.message = "Nie znaleziono udziału o id ${params.id}"
           redirect(action:list)
       }
       else {
@@ -61,7 +70,7 @@ class ParticipationsController {
       if(participationInstance) {
           participationInstance.properties = params
           if(!participationInstance.hasErrors() && participationInstance.save()) {
-              flash.message = "Participation ${params.id} updated"
+              flash.message = "Udział ${params.id} zapisany"
               redirect(action:show,id:participationInstance.id)
           }
           else {
@@ -69,21 +78,24 @@ class ParticipationsController {
           }
       }
       else {
-          flash.message = "Participation not found with id ${params.id}"
+          flash.message = "Nie znaleziono udziału o id ${params.id}"
           redirect(action:edit,id:params.id)
       }
   }
 
   def create = {
+      
       def participationInstance = new Participation()
+      
       participationInstance.properties = params
-      return ['participationInstance':participationInstance]
+      
+      return ['participationInstance':participationInstance, 'zmienna':5]
   }
 
   def save = {
       def participationInstance = new Participation(params)
       if(!participationInstance.hasErrors() && participationInstance.save()) {
-          flash.message = "Participation ${participationInstance.id} created"
+          flash.message = "Udział ${participationInstance.id} został dodany"
           redirect(action:show,id:participationInstance.id)
       }
       else {

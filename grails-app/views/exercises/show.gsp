@@ -1,5 +1,3 @@
-
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -65,8 +63,3 @@
         </div>
     </body>
 </html>
-
-            <g:if test="${menuInstance && menuInstance.id}">
-              <span class="menuButton"><g:link class="edit" action="edit" id="${menuInstance?.id}">Edytuj pozycję</g:link></span>
-              <span class="menuButton"><g:link class="delete" action="delete" id="${menuInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń pozycję</g:link></span>
-            </g:if>

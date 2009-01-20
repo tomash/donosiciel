@@ -47,6 +47,15 @@
                                 <g:select optionKey="id" from="${Exercise.list()}" name="exercise.id" value="${participationInstance?.exercise?.id}" ></g:select>
                               </td>
                             </tr>
+                            
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                <label for="exercise">Prowadzący:</label>
+                              </td>
+                              <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'exercise','errors')}">
+                                <g:select optionKey="id" from="${User.findAllByRole(2)}" name="user.id" value="${participationInstance?.user?.id}" ></g:select>
+                              </td>
+                            </tr>
                         
                         </tbody>
                     </table>
