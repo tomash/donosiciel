@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
-        <title>Udział</title>
+        <title>Udział w ćwiczeniu</title>
     </head>
     <body>
         <div class="nav">
@@ -13,7 +13,7 @@
             <span class="menuButton"><g:link class="create" action="create">Dodaj Udział</g:link></span>
         </div>
         <div class="body">
-            <h1>Pokaż Udział</h1>
+            <h1>Udział #${participationInstance?.id}</h1>
             <div class="dialog">
                 <table>
                     <tbody>
@@ -21,7 +21,7 @@
                         <tr class="prop">
                             <td valign="top" class="name">Ćwiczenie:</td>
                             
-                            <td valign="top" class="value"><g:link class="show" action="show" controller="exercise" id="${participationInstance?.exercise?.id}">${participationInstance.exercise}</g:link></td>
+                            <td valign="top" class="value"><g:link class="show" action="show" controller="exercises" id="${participationInstance?.exercise?.id}">${participationInstance.exercise}</g:link></td>
                         </tr>
                     
                     
@@ -61,13 +61,12 @@
             </div>
             
             <h3>Studenci:</h3>
-            <ul>
+            <ul id="students_list">
               <g:each in="${participationInstance.students}" status="i" var="studentInstance">
               <li>${studentInstance}</li>
               </g:each>
             </ul>
-            <g:link class="add_student" action="add_student" controller="participations" id="${participationInstance?.id}">dodaj studenta</g:link>
-            <a href="#" onclick="Element.blindDown('add_student_form')">ajax!</a>
+            <a href="#" onclick="Element.blindDown('add_student_form')">dodaj studenta do udziału</a>
             <div id="add_student_form" style="display:none;">
               <g:form action="save_student" method="post" id="${participationInstance?.id}" >
                 <g:select optionKey="id" from="${User.findAllByRole(1)}" name="student_id" ></g:select>
@@ -76,9 +75,16 @@
             </div>
             
             <h2>Wiadomości:</h2>
-            <ul>
+            <ul id="posts_list">
             <g:each in="${postsList?}" status="i" var="post">
-              <li>${fieldValue(bean:post, field:'content')} (${fieldValue(bean:post, field:'createdAt')})</li>
+              <li>
+                <div class="header">Dodane przez: <b>${post.user}</b> <i>(${post.createdAt})</i></div>
+                <div class="content">${post.content}</div>
+                <g:if test="${post.filepath}">
+                  <div class="file">Hello World!</div>
+                </g:if>
+
+              </li>
             </g:each>
             </ul>
             
@@ -89,7 +95,7 @@
                 <g:renderErrors bean="${postInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form controller="posts" action="save" method="post" >
+            <g:form controller="posts" action="save" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="participation_id" name="participation.id" value="${fieldValue(bean:participationInstance,field:'id')}"/>
                 <div class="dialog">
                     <table>
@@ -101,7 +107,15 @@
                                 <td valign="top" class="value ${hasErrors(bean:postInstance,field:'content','errors')}">
                                     <textarea id="content" name="content">${fieldValue(bean:postInstance,field:'content')}</textarea>
                                 </td>
-                            </tr> 
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="content">Plik:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:postInstance,field:'uploaded','errors')}">
+                                    <input type="file" id="file" name="file" size="50"/>
+                                </td>
+                            </tr>
                         
                         </tbody>
                     </table>

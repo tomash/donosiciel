@@ -18,7 +18,7 @@
                     <thead>
                         <tr>
                         
-                   	        <g:sortableColumn property="id" title="Id" />
+                   	        <g:sortableColumn property="id" title="Id" class="id" />
                         
                    	        <g:sortableColumn property="endMark" title="Ocena Końcowa" />
                         

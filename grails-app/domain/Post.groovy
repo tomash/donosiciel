@@ -3,6 +3,7 @@ class Post {
   String content
   User user
   Participation participation
+  String filepath
   
   static belongsTo = [Participation,User]
   

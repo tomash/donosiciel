@@ -25,13 +25,15 @@ a:link, a:visited, a:hover {
 
 h1 {
     color: #006dba;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 16px;
     margin: .8em 0 .3em 0;
 }
 
-ul {
-    padding-left: 15px;	
+ul 
+{
+    list-style-type: none;
+    padding: 0;
 }
 
 input, select, textarea {
@@ -41,11 +43,13 @@ input, select, textarea {
     margin: 2px 0;
     padding: 2px 4px;
 }
+
+
 select {
    padding: 2px 2px 2px 0;
 }
 textarea {
-	width: 250px;
+	width: 450px;
 	height: 150px;
 	vertical-align: top;
 }
@@ -179,13 +183,21 @@ th.desc a {
 /* LIST */
 
 .list table {
-    border-collapse: collapse;
+  width: 600px;
+  border-collapse: collapse;
 }
+
+
 .list th, .list td {
     border-left: 1px solid #ddd;
 }
 .list th:hover, .list tr:hover {
     background: #b2d1ff;
+}
+
+.list th.id
+{
+  width: 30px;
 }
 
 /* PAGINATION */
@@ -215,6 +227,7 @@ th.desc a {
 
 .dialog table {
     padding: 5px 0;
+    width: 600px;
 }
 
 .prop {
@@ -264,4 +277,57 @@ th.desc a {
 .buttons input.save {
     background: transparent url(../images/skin/database_save.png) 5px 50% no-repeat;
     padding-left: 28px;
+}
+
+/* Participations/show */
+h1, h2, h3
+{
+  margin: 5px 4px;
+  color: #006dba;
+}
+
+h2
+{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+h3
+{
+  font-weight: bold;
+  font-size: 13px;
+}
+
+
+ul#students_list
+{
+  margin: 2px;
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+ul#students_list li
+{
+  font-size: 12px;
+}
+
+ul#posts_list
+{
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+
+ul#posts_list li
+{
+  border-bottom: 1px solid #ccc;;
+}
+
+ul#posts_list .header
+{
+  background:#FFFFFF url(../images/skin/shadow.jpg) repeat-x scroll center bottom;
+  color:#333;
+  font-size:12px;
+  margin-top:2px;
+  overflow:hidden;
+  padding:0;
 }

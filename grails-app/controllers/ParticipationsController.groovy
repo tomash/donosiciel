@@ -31,6 +31,14 @@ class ParticipationsController {
 
   def show = {
       def participationInstance = Participation.get( params.id )
+      
+      if(!participationInstance.authorize(session.user))
+      {
+        flash.message = "Próba nieautoryzowanego dostępu"
+        redirect(uri:"/")
+        return false
+      }
+      
       def postsList = Post.findAll("from Post as p where p.participation=? order by createdAt ASC", [participationInstance])
       
       if(!participationInstance) {

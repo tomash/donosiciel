@@ -90,9 +90,25 @@ class PostsController {
 
   def save = {
       def postInstance = new Post(params)
+      
+      println "Getting new file"
+      def f = request.getFile('file')
+      if(!f.empty) {
+          f.transferTo( new File('someotherloc') )
+          postInstance.filepath = "someotherloc"
+          println f
+      }
+      else {
+        flash.message = 'file cannot be empty'
+        redirect(controller:'participations', action:'show', id:params.participation.id)
+      }
+      println "Done getting new file"
+      
       postInstance.user = session.user
       postInstance.createdAt = new Date()
       if(!postInstance.hasErrors() && postInstance.save()) {
+          def downloadedfile = request.getFile('file');
+          downloadedfile.transferTo(new File('c:/somefolder/filename.jpeg'))
           flash.message = "Post ${postInstance.id} created"
           redirect(controller:"participations",action:show,id:postInstance.participation.id)
       }

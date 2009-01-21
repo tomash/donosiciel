@@ -10,7 +10,7 @@ class User
   String password
   String crypted_password
   String salt
-  String toString() { "$email [$id]" }
+  String toString() { "$email (#$id)" }
   Integer role = 0 // 0 - noone, 1-student, 2-professor, 16-admin
   
     
