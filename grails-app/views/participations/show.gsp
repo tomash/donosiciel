@@ -79,9 +79,11 @@
             <g:each in="${postsList?}" status="i" var="post">
               <li>
                 <div class="header">Dodane przez: <b>${post.user}</b> <i>(${post.createdAt})</i></div>
-                <div class="content">${post.content}</div>
-                <g:if test="${post.filepath}">
-                  <div class="file">Hello World!</div>
+                <div class="content">${post.content.encodeAsHTML()}</div>
+                <g:if test="${post.filename}">
+                  <div class="file">załączono: 
+                  <a href="${createLinkTo( dir:'uploaded', file: post.filename, absolute:true )}" target="_new">${post.filename}</a>
+                  </div>
                 </g:if>
 
               </li>
@@ -95,7 +97,7 @@
                 <g:renderErrors bean="${postInstance}" as="list" />
             </div>
             </g:hasErrors>
-            <g:form controller="posts" action="save" method="post" enctype="multipart/form-data">
+            <g:form controller="posts" action="save" method="post" enctype="multipart/form-data" >
                 <input type="hidden" id="participation_id" name="participation.id" value="${fieldValue(bean:participationInstance,field:'id')}"/>
                 <div class="dialog">
                     <table>
@@ -113,7 +115,7 @@
                                     <label for="content">Plik:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:postInstance,field:'uploaded','errors')}">
-                                    <input type="file" id="file" name="file" size="50"/>
+                                    <input type="file" id="file" name="uploaded_file" size="50"/>
                                 </td>
                             </tr>
                         

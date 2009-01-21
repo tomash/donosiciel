@@ -329,5 +329,16 @@ ul#posts_list .header
   font-size:12px;
   margin-top:2px;
   overflow:hidden;
-  padding:0;
+  padding: 0 5px 0 5px;
+}
+
+ul#posts_list .content
+{
+  padding: 5px;
+}
+
+ul#posts_list .file
+{
+  border-top: 1px dotted red;
+  padding-left: 5px;
 }

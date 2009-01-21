@@ -70,4 +70,5 @@ log4j {
     additivity.StackTrace=false
 }
 
-
+//other config
+uploaded.location = "web-app/uploaded/"

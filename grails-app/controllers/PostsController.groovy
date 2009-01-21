@@ -89,31 +89,37 @@ class PostsController {
   }
 
   def save = {
-      def postInstance = new Post(params)
       
-      println "Getting new file"
-      def f = request.getFile('file')
-      if(!f.empty) {
-          f.transferTo( new File('someotherloc') )
-          postInstance.filepath = "someotherloc"
-          println f
-      }
-      else {
-        flash.message = 'file cannot be empty'
-        redirect(controller:'participations', action:'show', id:params.participation.id)
-      }
-      println "Done getting new file"
-      
+      def postInstance = new Post(params)      
       postInstance.user = session.user
       postInstance.createdAt = new Date()
+    
+      def f = request.getFile('uploaded_file')
+      if(!f.empty) 
+      {
+        String timestamp = new Date().getTime().toString()
+        String fname = session.user.id + '_' + timestamp + '_' + f.getOriginalFilename()
+        String path = grailsApplication.config.uploaded.location.toString() + File.separatorChar + fname
+        new File( grailsApplication.config.uploaded.location.toString() ).mkdirs()
+        postInstance.filename = fname
+        f.transferTo( new File( path ) )								             			     	
+      }
+      /*
+      else 
+      {
+        flash.message = 'file cannot be empty'
+        redirect(uri:"/")
+      }*/
+
+
       if(!postInstance.hasErrors() && postInstance.save()) {
-          def downloadedfile = request.getFile('file');
-          downloadedfile.transferTo(new File('c:/somefolder/filename.jpeg'))
-          flash.message = "Post ${postInstance.id} created"
-          redirect(controller:"participations",action:show,id:postInstance.participation.id)
+          flash.message = "Wiadomość #${postInstance.id} dodana"
+          redirect(controller:"participations",action:'show',id:postInstance.participation.id)
       }
       else {
           render(view:'create',model:[postInstance:postInstance])
       }
+      //redirect(controller:"participations",action:'show',id:1)
   }
+
 }
