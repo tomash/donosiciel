@@ -54,16 +54,25 @@
                     </tbody>
                 </table>
             </div>
+            
+            <div class="buttons">
+              <span class="button"><g:link class="edit" action="edit" id="${participationInstance?.id}">Edytuj</g:link></span>
+              <span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
+            </div>
+            
             <h3>Studenci:</h3>
             <ul>
               <g:each in="${participationInstance.students}" status="i" var="studentInstance">
               <li>${studentInstance}</li>
               </g:each>
             </ul>
-            
-            <div class="buttons">
-              <span class="button"><g:link class="edit" action="edit" id="${participationInstance?.id}">Edytuj</g:link></span>
-              <span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
+            <g:link class="add_student" action="add_student" controller="participations" id="${participationInstance?.id}">dodaj studenta</g:link>
+            <a href="#" onclick="Element.blindDown('add_student_form')">ajax!</a>
+            <div id="add_student_form" style="display:none;">
+              <g:form action="save_student" method="post" id="${participationInstance?.id}" >
+                <g:select optionKey="id" from="${User.findAllByRole(1)}" name="student_id" ></g:select>
+                <input class="save" type="submit" value="Dodaj" />
+              </g:form>
             </div>
             
             <h2>Wiadomości:</h2>

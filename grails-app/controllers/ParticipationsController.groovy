@@ -94,12 +94,27 @@ class ParticipationsController {
 
   def save = {
       def participationInstance = new Participation(params)
-      if(!participationInstance.hasErrors() && participationInstance.save()) {
+      if(!participationInstance.hasErrors() && participationInstance.save()) 
+      {
           flash.message = "Udział ${participationInstance.id} został dodany"
           redirect(action:show,id:participationInstance.id)
       }
-      else {
+      else 
+      {
           render(view:'create',model:[participationInstance:participationInstance])
       }
+  }
+  
+  def add_student = {
+    def participationInstance = Participation.get( params.id )
+    
+  }
+  
+  def save_student = {
+    def participationInstance = Participation.get( params.id )
+    def studentInstance = User.get(params.student_id)
+    participationInstance.addToStudents(studentInstance)
+    flash.message = "Student ${studentInstance.email} został dodany"
+    redirect(action:show, id:participationInstance.id)
   }
 }
