@@ -15,7 +15,6 @@
             <li><g:link controller="userAdmin">Administracja użytkownikami</g:link></li>
           </g:if>
         </ul>
-        <p>${User.generateSalt()}</p>
         
         <p style="margin-left:20px;width:80%;display: none;">[póki aplikacja jest w fazie rozwojowej]: Lista kontrolerów:</p>
         <div class="dialog" style="margin-left:20px;width:60%;display: none;">

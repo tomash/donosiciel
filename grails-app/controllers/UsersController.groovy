@@ -73,7 +73,7 @@ class UsersController {
     } 
     else 
     { 
-      user.register_magic
+      user.register_magic()
       if (user.save()) 
       {
         flash.message = "Rejestracja udana, możesz się zalogować!"
