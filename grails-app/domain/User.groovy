@@ -1,6 +1,7 @@
 import java.security.MessageDigest
 import sun.misc.BASE64Encoder
 import sun.misc.CharacterEncoder
+import java.util.Random
 
 class User
 {
@@ -17,17 +18,41 @@ class User
   static constraints =
   {
     email(email:true)
-    password(blank:false, password:true)
+    crypted_password(blank:false, crypted_password:true)
+    salt(blank:false, salt:true)
   }
   
-  static encodeWithSalt(str, salt) {
+  static encodeWithSalt(str, salt) 
+  {
     MessageDigest md = MessageDigest.getInstance('SHA')
     md.update("${str}--${salt}".getBytes('UTF-8')) 
     return (new BASE64Encoder()).encode(md.digest()) 
   }
   
-  boolean authenticate(password) {
-    String encoded = encodeWithSalt(password, salt)
+  static generateSalt() {
+    Random rnd = new Random()
+    def chars = []
+    ['A'..'Z','a'..'z','0'..'9'].each{chars += it}
+    def salt = (1..16).collect{ chars[rnd.nextInt(chars.size())] }.join()
+    assert salt.size() == 16
+    return salt
+  }
+  
+  String callStatic()
+  {
+    return this.generateSalt();
+  }
+  
+  def register_magic()
+  {
+    salt = this.generateSalt();
+    crypted_password = this.encodeWithSalt(password, salt)
+    password = ""
+  }
+  
+  boolean authenticate(with_password) 
+  {
+    String encoded = encodeWithSalt(with_password, salt)
     if(encoded.equals(crypted_password))
       return true
     else

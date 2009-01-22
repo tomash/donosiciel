@@ -329,7 +329,7 @@ ul#posts_list
 
 ul#posts_list li
 {
-  border-bottom: 1px solid #ccc;;
+  border-bottom: 1px solid #666;;
 }
 
 ul#posts_list .header
@@ -349,6 +349,35 @@ ul#posts_list .content
 
 ul#posts_list .file
 {
-  border-top: 1px dotted red;
+  border-top: 1px dotted #f99;
   padding-left: 5px;
+}
+
+div.autocomplete {
+  
+  position:absolute;
+  width:250px;
+  background-color:#8cafea;
+  margin:0px;
+  padding:0px;
+  overflow:hidden;
+  border: 1px solid;
+}
+
+div.autocomplete ul {
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+  overflow:auto;
+}
+
+div.autocomplete ul li.selected { background-color: #294597; color: #ffffff}
+
+div.autocomplete ul li {
+  list-style-type:none;
+  display:block;
+  margin:0 0 0 5;
+  padding:2px;
+  height:12px;
+  cursor:pointer;
 }

@@ -38,10 +38,53 @@ class UsersController {
       redirect(action:login) 
     } 
   }
-  
+  /*
+  def create = {
+      def exerciseInstance = new Exercise()
+      exerciseInstance.properties = params
+      return ['exerciseInstance':exerciseInstance]
+  }
 
-  def register = {}
+  def save = {
+      def exerciseInstance = new Exercise(params)
+      if(!exerciseInstance.hasErrors() && exerciseInstance.save()) {
+          flash.message = "Ćwiczenie ${exerciseInstance.id} dodane"
+          redirect(action:show,id:exerciseInstance.id)
+      }
+      else {
+          render(view:'create',model:[exerciseInstance:exerciseInstance])
+      }
+  }
+*/
+  def create = 
+  {
+    def userInstance = new User()
+    userInstance.properties = params
+    return ['userInstance':userInstance]
+  }
 
-  //def handleRegistration = { def user = new User(params) if (params.password != params.confirm) { flash.message = "The passwords you entered do not match." redirect(action:register) } else { user.password = params.password.encodeAsPassword() if (user.save()) { redirect(controller:'topic', action:'list') } else { flash.user = user redirect(action:register) } } } 
+  def save = 
+  { 
+    def user = new User(params) 
+    if (params.password != params.password_confirmation) 
+    { 
+      flash.message = "Hasło i potwierdzenie się nie zgadzają." 
+      redirect(action:create) 
+    } 
+    else 
+    { 
+      user.register_magic
+      if (user.save()) 
+      {
+        flash.message = "Rejestracja udana, możesz się zalogować!"
+        redirect(uri:'/') 
+      } 
+      else 
+      { 
+        flash.user = user 
+        redirect(action:create) 
+      } 
+    } 
+  } 
 
 }

@@ -5,6 +5,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title>Udział w ćwiczeniu</title>
+        
+        
+        <g:javascript>
+          window.onload = function()
+                          {
+                            new Ajax.Autocompleter("student_email",
+                                                   "autocomplete_choices",
+                                                   "/donosiciel/participations/ajaxAutoComplete",
+                                                   {}
+                                                  );
+                          }
+        </g:javascript>
     </head>
     <body>
         <div class="nav">
@@ -66,13 +78,19 @@
               <li>${studentInstance}</li>
               </g:each>
             </ul>
-            <a href="#" onclick="Element.blindDown('add_student_form')">dodaj studenta do udziału</a>
+            
+            <g:if test="${session.user.role>1}">
+              <a href="#" onclick="Element.blindDown('add_student_form')">dodaj studenta do udziału</a>
+            </g:if>
             <div id="add_student_form" style="display:none;">
               <g:form action="save_student" method="post" id="${participationInstance?.id}" >
-                <g:select optionKey="id" from="${User.findAllByRole(1)}" name="student_id" ></g:select>
+                <!--<g:select optionKey="id" from="${User.findAllByRole(1)}" name="student_id" ></g:select>-->
+                <input type="text" id="student_email" name="student_email"/>
                 <input class="save" type="submit" value="Dodaj" />
               </g:form>
             </div>
+            
+            <div id="autocomplete_choices" class="autocomplete" ></div>
             
             <h2>Wiadomości:</h2>
             <ul id="posts_list">

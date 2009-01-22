@@ -120,9 +120,35 @@ class ParticipationsController {
   
   def save_student = {
     def participationInstance = Participation.get( params.id )
-    def studentInstance = User.get(params.student_id)
-    participationInstance.addToStudents(studentInstance)
-    flash.message = "Student ${studentInstance.email} został dodany"
+    def studentInstance = null
+    if(params.student_id)
+      studentInstance = User.get(params.student_id)
+    else if(params.student_email)
+      studentInstance = User.findByEmail(params.student_email)
+    
+    if(studentInstance)
+    {
+      participationInstance.addToStudents(studentInstance)
+      flash.message = "Student ${studentInstance.email} został dodany"
+    }
     redirect(action:show, id:participationInstance.id)
   }
+  
+  def ajaxAutoComplete = {
+    if(params.student_email)
+    {
+      def input = params.student_email + '%'
+      
+      def list = User.findAll("from User as user where lower(user.email) like :eml", [eml:input])
+      
+      StringBuffer idList = new StringBuffer()
+      idList.append("<ul>")
+      list?.each{em -> idList.append("<li>" + em.email+"</li>")}
+      idList.append("</ul>")  
+      
+      render idList.toString()
+    }
+  }
+  
 }
+

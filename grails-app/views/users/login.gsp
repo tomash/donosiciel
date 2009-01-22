@@ -38,10 +38,12 @@
     </div>
     <div class="buttons">
       <span class="formButton">
-      <input type="submit" value="Zaloguj"></input>
+        <input type="submit" value="Zaloguj"></input>
       </span>
+      
     </div>
   </g:form>
+  <g:link controller="users" action="create">Rejestracja</g:link>
   </div>
 </body>
 </html>
