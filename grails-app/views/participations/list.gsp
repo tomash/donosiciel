@@ -42,14 +42,6 @@
               
               <td>
                 <g:link action="show" controller="exercises" id="${participationInstance.exercise?.id}">${fieldValue(bean:participationInstance, field:'exercise')}</g:link></td>
-              
-              <td>
-                &nbsp;
-                <g:if test="${session.user}">
-                
-                <g:link action="apply" controller="participations" id="${participationInstance.id}"  params='["student_id": "${session.user?.id}"]'>zgłoś</g:link>
-                </g:if>
-              </td>
           
             </tr>
           </g:each>
