@@ -6,8 +6,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <g:layoutHead />
         <g:javascript library="application" />		
-        <g:javascript library="prototype" />
-        <g:javascript library="scriptaculous" />
     </head>
     <body>
         <div id="spinner" class="spinner" style="display:none;">

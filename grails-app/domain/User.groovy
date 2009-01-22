@@ -37,17 +37,13 @@ class User
     assert salt.size() == 16
     return salt
   }
-  
-  String callStatic()
-  {
-    return this.generateSalt();
-  }
-  
+
   def register_magic()
   {
     salt = this.generateSalt();
     crypted_password = this.encodeWithSalt(password, salt)
     password = ""
+    role = 0  //nice try ;)
   }
   
   boolean authenticate(with_password) 

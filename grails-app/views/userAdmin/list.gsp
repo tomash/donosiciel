@@ -22,7 +22,7 @@
                             
                             <g:sortableColumn property="role" title="Rola" />
                             
-                            <th style="color:#333333; font-size:10px;">opcje</th>
+                            <th class="options">opcje</th>
                         
                         </tr>
                     </thead>

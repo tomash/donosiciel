@@ -210,6 +210,12 @@ th.desc a {
   width: 60px;
 }
 
+.list th.options
+{
+  
+  width: 120px;
+}
+
 /* PAGINATION */
 
 .paginateButtons {
