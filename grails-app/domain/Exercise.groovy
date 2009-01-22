@@ -1,6 +1,7 @@
 class Exercise {
   String title
   String description
+  Integer internal_number = 0
   
   static mapping = { description type:"text" }
   
