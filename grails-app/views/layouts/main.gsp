@@ -19,10 +19,14 @@
         <g:if test="${session.user}">
           Zalogowany jako ${session.user.email}.
           <g:link controller="users" action="logout">Wyloguj</g:link>
+          |
+          <g:link controller="users" action="edit" id="${session.user.id}">Zmiana hasła</g:link>
         </g:if>
         <g:else>
           Niezalogowany.
-          <g:link controller="users" action="login">Zaloguj</g:link>
+          <g:link controller="users" action="login">Logowanie</g:link>
+          |
+          <g:link controller="users" action="create">Rejestracja</g:link>
         </g:else>
         
         <g:layoutBody />		

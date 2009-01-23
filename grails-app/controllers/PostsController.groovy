@@ -18,7 +18,7 @@ class PostsController {
       return false
     }
   }
-
+/*
   def index = { redirect(action:list,params:params) }
 
   // the delete, save and update actions only accept POST requests
@@ -51,7 +51,8 @@ class PostsController {
           redirect(action:list)
       }
   }
-
+*/
+/*
   def edit = {
       def postInstance = Post.get( params.id )
 
@@ -63,7 +64,8 @@ class PostsController {
           return [ postInstance : postInstance ]
       }
   }
-
+*/
+/*
   def update = {
       def postInstance = Post.get( params.id )
       if(postInstance) {
@@ -81,13 +83,14 @@ class PostsController {
           redirect(action:edit,id:params.id)
       }
   }
-
+*/
+/*
   def create = {
       def postInstance = new Post()
       postInstance.properties = params
       return ['postInstance':postInstance]
   }
-
+*/
   def save = {
       
       def postInstance = new Post(params)      

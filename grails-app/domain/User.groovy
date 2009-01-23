@@ -9,18 +9,20 @@ class User
   Long version
   String email
   String password
-  String crypted_password
-  String salt
+  String crypted_password = ""
+  String salt = ""
   String toString() { "$email (#$id)" }
   Integer role = 0 // 0 - noone, 1-student, 2-professor, 16-admin
   
     
   static constraints =
   {
-    email(email:true)
-    crypted_password(blank:false, crypted_password:true)
-    salt(blank:false, salt:true)
+    email(email:true, blank:false, minSize:4, maxSize:20, unique:true)
+    //password(size:5..15, blank:false)
+    //crypted_password(blank:false)
+    password(blank:false,password:true,minSize:6,maxSize:20)
   }
+
   
   static encodeWithSalt(str, salt) 
   {
@@ -42,8 +44,7 @@ class User
   {
     salt = this.generateSalt();
     crypted_password = this.encodeWithSalt(password, salt)
-    password = ""
-    role = 0  //nice try ;)
+    password = "crypted"
   }
   
   boolean authenticate(with_password) 
@@ -53,6 +54,20 @@ class User
       return true
     else
       return false
+  }
+  
+  boolean authorize(checked_user)
+  {
+    if(!checked_user) // się wylogował był
+      return false
+    
+    if(checked_user.role >= 16) // admin
+      return true
+    if(id==checked_user.id)  // is the owner
+      return true
+
+    //if all else fails...
+    return false
   }
   
   String roleToString()

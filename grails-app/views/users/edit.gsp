@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="main" />
-  <title>Rejestracja</title>
+  <title>Edycja</title>
 </head>
 
 <body>
@@ -12,28 +12,14 @@
   </div>
   
   <div class="body">
-    <h1>Rejestracja</h1>
-    <g:hasErrors bean="${user}">
-      <div class="errors">
-          <g:renderErrors bean="${user}" as="list" />
-      </div>
-    </g:hasErrors>
+    <h1>Zmiana hasła</h1>
     
-  <g:form action="save" method="post">
+    <g:form action="change_password" method="post" id="${userInstance.id}">
     <div class="dialog">
-      <p>Wypełnij poniższy formularz</p>
       <table class="userForm">
         <tr class='prop'>
           <td valign='top' style='text-align:left;' width='20%'>
-            <label for='email'>Email:</label>
-          </td>
-          <td valign='top' style='text-align:left;' width='80%'>
-            <input id="email" type='text' name='email' value='${user?.email}' />
-          </td>
-        </tr>
-        <tr class='prop'>
-          <td valign='top' style='text-align:left;' width='20%'>
-            <label for='password'>Hasło:</label>
+            <label for='password'>Nowe Hasło:</label>
           </td>
           <td valign='top' style='text-align:left;' width='80%'>
             <input id="password" type='password' name='password' />
@@ -41,7 +27,7 @@
         </tr>
         <tr class='prop'>
           <td valign='top' style='text-align:left;' width='20%'>
-            <label for='password_confirmation'>Potwierdź hasło:</label>
+            <label for='password_confirmation'>Potwierdź nowe hasło:</label>
           </td>
           <td valign='top' style='text-align:left;' width='80%'>
             <input id="password_confirmation" type='password' name='password_confirmation' />
@@ -51,7 +37,7 @@
     </div>
     <div class="buttons">
       <span class="formButton">
-        <input type="submit" value="Zarejestruj"></input>
+        <input type="submit" value="Zapisz"></input>
       </span>
       
     </div>

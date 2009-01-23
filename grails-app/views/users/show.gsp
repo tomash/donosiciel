@@ -41,8 +41,7 @@
                 </table>
             </div>
             <div class="buttons">
-              <span class="button"><g:link class="edit" action="edit" id="${userInstance?.id}">Edytuj rolę</g:link></span>
-              <span class="button"><g:link class="edit" controller="users" action="edit" id="${userInstance?.id}">Zmień hasło</g:link></span>
+              <span class="button"><g:link class="edit" action="edit" id="${userInstance?.id}">Edytuj</g:link></span>
               <!--<span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>-->
             </div>
         </div>

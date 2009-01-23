@@ -27,7 +27,7 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="endMark">End Mark:</label>
+                                    <label for="endMark">Ocena końcowa:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'endMark','errors')}">
                                     <input type="text" id="endMark" name="endMark" value="${fieldValue(bean:participationInstance,field:'endMark')}" />
@@ -36,12 +36,29 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="startDateTime">Start Date Time:</label>
+                                    <label for="startDateTime">Dzień rozpoczęcia:</label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'startDateTime','errors')}">
-                                    <g:datePicker name="startDateTime" value="${participationInstance?.startDateTime}" ></g:datePicker>
+                                    <g:datePicker name="startDateTime" precision="day" value="${participationInstance?.startDateTime}" ></g:datePicker>
                                 </td>
-                            </tr> 
+                            </tr>
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                <label for="exercise">Ćwiczenie:</label>
+                              </td>
+                              <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'exercise','errors')}">
+                                <g:select optionKey="id" from="${Exercise.list()}" name="exercise.id" value="${participationInstance?.exercise?.id}" ></g:select>
+                              </td>
+                            </tr>
+                            
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                <label for="exercise">Prowadzący:</label>
+                              </td>
+                              <td valign="top" class="value ${hasErrors(bean:participationInstance,field:'exercise','errors')}">
+                                <g:select optionKey="id" from="${User.findAllByRole(2)}" name="user.id" value="${participationInstance?.user?.id}" ></g:select>
+                              </td>
+                            </tr>
                         
                         </tbody>
                     </table>

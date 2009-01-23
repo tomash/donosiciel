@@ -11,6 +11,9 @@
           <li><g:link controller="exercises">Ćwiczenia i ich opisy</g:link></li>
           <li><g:link controller="participations">Udziały w ćwiczeniach (instancje)</g:link></li>
           <li><g:link controller="users">Logowanie i rejestracja</g:link></li>
+          <g:if test="${session.user}">
+            <li><g:link controller="users" action="edit" id="${session.user.id}">Zmiana hasła</g:link></li>
+          </g:if>
           <g:if test="${session.user?.role == 16}">
             <li><g:link controller="userAdmin">Administracja użytkownikami</g:link></li>
           </g:if>
