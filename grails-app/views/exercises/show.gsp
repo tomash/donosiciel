@@ -60,6 +60,46 @@
               <span class="button"><g:link class="edit" action="edit" id="${exerciseInstance?.id}">Edytuj</g:link></span>
               <span class="button"><g:link class="delete" action="delete" id="${participationInstance?.id}" onclick="return confirm('Czy jesteś pewny?');">Usuń</g:link></span>
             </div>
+            
+            <h2>Udziały (instancje) ćwiczenia</h2>
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                   	        <g:sortableColumn property="id" title="Id" class="id" />
+                            <g:sortableColumn property="startDateTime" title="rozpoczęte" class="startDateTime" />
+                   	        <!--<g:sortableColumn property="title" title="Nazwa" />-->
+                            <th>Studenci</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <g:each in="${exerciseInstance.participations}" status="i" var="participationInstance">
+                        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+                            <td><g:link action="show" controller="participations" id="${participationInstance.id}" style="width:100%; height: 100%; display:block; font-size: 14px; text-align: center;">${fieldValue(bean:participationInstance, field:'id')}</g:link></td>
+                        
+                            <td>
+                              <g:link action="show" controller="participations" id="${participationInstance.id}" style="width:100%; height: 100%; display:block; font-size: 12px;"> ${participationInstance.startDateTime} </g:link>
+                            </td>
+                            
+                            <td>
+                              <ul id="students_list">
+                                <g:each in="${participationInstance.students}" status="j" var="studentInstance">
+                                  <li>${studentInstance}</li>
+                                </g:each>
+                              </ul>
+                            </td>
+                        
+                        </tr>
+                    </g:each>
+                    </tbody>
+                </table>
+            </div>
+            <div class="buttons" style="padding: 5px 0;">
+                <span class="menuButton">
+                  <span class="menuButton"><g:link class="create" action="create" controller="participations" params="[exercise_id:7]">Dodaj Udział do tego Ćwiczenia</g:link></span>
+                </span>
+            </div>
+            
         </div>
     </body>
 </html>

@@ -7,7 +7,6 @@ class User
 {
   Long id
   Long version
-  String names
   String email
   String password
   String crypted_password = ""

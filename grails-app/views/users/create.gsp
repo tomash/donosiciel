@@ -28,7 +28,7 @@
             <label for='name'>Imię i Nazwisko:</label>
           </td>
           <td valign='top' style='text-align:left;' width='80%'>
-            <input id="names" type='text' name='names' value='${user?.names}' />
+            <input id="name" type='text' name='name' value='${user?.name}' />
           </td>
         </tr>
         <tr class='prop'>

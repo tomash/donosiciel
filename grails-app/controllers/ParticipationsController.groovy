@@ -92,10 +92,10 @@ class ParticipationsController {
   }
 
   def create = {
-      
       def participationInstance = new Participation()
       
       participationInstance.properties = params
+      participationInstance.exercise = Exercise.get( params.exercise_id )
       
       return ['participationInstance':participationInstance, 'zmienna':5]
   }

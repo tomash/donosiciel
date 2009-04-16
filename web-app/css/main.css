@@ -243,7 +243,8 @@ th.desc a {
 
 .dialog table {
     padding: 5px 0;
-    width: 600px;
+    /*width: 600px;*/
+    width: 100%;
 }
 
 .prop {

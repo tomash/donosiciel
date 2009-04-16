@@ -8,6 +8,10 @@ class Participation {
   static optionals = ["endMark"]
   static hasMany = [posts:Post, students:User]
   
+  static mapping = {
+     students ignoreNotFound:true
+  }
+  
   boolean authorize(checked_user)
   {
     if(!checked_user) // się wylogował był

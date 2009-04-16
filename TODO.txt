@@ -1,5 +1,8 @@
 1) pole User.name ze wszystkimi tego konsekwencjami (wyświetlanie, ajax-autocomplete itd.)
 2) wyświetlanie udziałów dla danego ćwiczenia
+  DONE
+
+
 3) podkatalog uploads/participation.id dla uploadowanych plików
 4!) powiadomienia mailowe o nowych wiadomościach w udziałach do których się należy
 5) tomcat: ilf.if.pw.edu.pl:8888
