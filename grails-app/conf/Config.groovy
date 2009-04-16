@@ -72,3 +72,17 @@ log4j {
 
 //other config
 uploaded.location = "web-app/uploaded/"
+
+
+grails {
+   mail {
+     host = "poczta.o2.pl"
+     port = 25
+     username = "tomekrs"
+     password = "ntb4ss"
+     props = ["mail.smtp.auth":"true"]
+  } 
+}
+grails.mail.default.from="tomekrs@o2.pl"
+
+//grails.serverURL = "http://donosiciel.domena.com"

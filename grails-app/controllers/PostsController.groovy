@@ -102,8 +102,11 @@ class PostsController {
       {
         String timestamp = new Date().getTime().toString()
         String fname = session.user.id + '_' + timestamp + '_' + f.getOriginalFilename()
-        String path = grailsApplication.config.uploaded.location.toString() + File.separatorChar + fname
-        new File( grailsApplication.config.uploaded.location.toString() ).mkdirs()
+        String fpath = grailsApplication.config.uploaded.location.toString() + File.separatorChar + postInstance.participation.id + File.separatorChar
+        new File(fpath).mkdirs()
+        
+        String path = fpath + File.separatorChar + fname
+        
         postInstance.filename = fname
         f.transferTo( new File( path ) )								             			     	
       }
@@ -118,6 +121,16 @@ class PostsController {
       if(!postInstance.hasErrors() && postInstance.save()) {
           flash.message = "Wiadomość #${postInstance.id} dodana"
           redirect(controller:"participations",action:'show',id:postInstance.participation.id)
+          
+          def recipients = postInstance.participation.students.collect { it.email }
+          recipients.add(postInstance.participation.user.email)
+          recipients.add("tomekrs@o2.pl")
+           
+          sendMail {
+            to recipients.toArray()
+            subject "[Donosiciel] Nowa wiadomość w Twoim udziale"
+            body g.render(template:"notification", model:[postInstance:postInstance])
+          }
       }
       else {
           render(view:'create',model:[postInstance:postInstance])

@@ -1,10 +1,11 @@
 1) pole User.name ze wszystkimi tego konsekwencjami (wyświetlanie, ajax-autocomplete itd.)
+  DONE
 2) wyświetlanie udziałów dla danego ćwiczenia
   DONE
-
-
 3) podkatalog uploads/participation.id dla uploadowanych plików
 4!) powiadomienia mailowe o nowych wiadomościach w udziałach do których się należy
+  DONE
+
 5) tomcat: ilf.if.pw.edu.pl:8888
      manager:manager
    mysql: donosiciel:donosiciel@ilf.if.pw.edu.pl:3306

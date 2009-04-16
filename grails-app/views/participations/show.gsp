@@ -85,7 +85,6 @@
             </g:if>
             <div id="add_student_form" style="display:none;">
               <g:form action="save_student" method="post" id="${participationInstance?.id}" >
-                <!--<g:select optionKey="id" from="${User.findAllByRole(1)}" name="student_id" ></g:select>-->
                 <input type="text" id="student_email" name="student_email"/>
                 <input class="save" type="submit" value="Dodaj" />
               </g:form>
@@ -101,7 +100,7 @@
                 <div class="content">${post.content.encodeAsHTML()}</div>
                 <g:if test="${post.filename}">
                   <div class="file">załączono: 
-                  <a href="${createLinkTo( dir:'uploaded', file: post.filename, absolute:true )}" target="_new">${post.filename}</a>
+                  <a href="${createLinkTo( dir:'uploaded/' + participationInstance?.id, file: post.filename, absolute:true )}" target="_new">${post.filename}</a>
                   </div>
                 </g:if>
 
