@@ -39,7 +39,7 @@ class ParticipationsController {
         return false
       }
       
-      def postsList = Post.findAll("from Post as p where p.participation=? order by createdAt ASC", [participationInstance])
+      def postsList = Post.findAll("from Post as p where p.participation=? order by createdAt DESC", [participationInstance])
       
       if(!participationInstance) {
           flash.message = "Nie znaleziono udziału o id ${params.id}"
@@ -124,7 +124,7 @@ class ParticipationsController {
     if(params.student_id)
       studentInstance = User.get(params.student_id)
     else if(params.student_email)
-      studentInstance = User.findByEmail(params.student_email)
+      studentInstance = User.findByEmail(params.student_email.split(" ")[0])
     
     if(studentInstance)
     {
@@ -138,12 +138,15 @@ class ParticipationsController {
     if(params.student_email)
     {
       def input = params.student_email + '%'
+      def name_input = '%' + params.student_email + '%'
       
-      def list = User.findAll("from User as user where lower(user.email) like :eml", [eml:input])
+      def list = User.findAll("from User as user where lower(user.email) like :eml OR lower(user.name) like :nm", [eml:input, nm:name_input])
       
       StringBuffer idList = new StringBuffer()
       idList.append("<ul>")
-      list?.each{em -> idList.append("<li>" + em.email+"</li>")}
+      //list?.each{em -> idList.append("<li>" + em.email + "</li>")}
+      list?.each{em -> idList.append("<li>${em.email} (${em.name})</li>")}
+      //list?.each{em -> idList.append("<li>" + em.toString + "</li>")}
       idList.append("</ul>")  
       
       render idList.toString()

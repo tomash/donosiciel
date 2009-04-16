@@ -25,6 +25,14 @@
       <table class="userForm">
         <tr class='prop'>
           <td valign='top' style='text-align:left;' width='20%'>
+            <label for='name'>Imię i Nazwisko:</label>
+          </td>
+          <td valign='top' style='text-align:left;' width='80%'>
+            <input id="names" type='text' name='names' value='${user?.names}' />
+          </td>
+        </tr>
+        <tr class='prop'>
+          <td valign='top' style='text-align:left;' width='20%'>
             <label for='email'>Email:</label>
           </td>
           <td valign='top' style='text-align:left;' width='80%'>

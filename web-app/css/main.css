@@ -314,6 +314,10 @@ h3
   font-size: 13px;
 }
 
+input#student_email
+{
+  width: 400px;
+}
 
 ul#students_list
 {

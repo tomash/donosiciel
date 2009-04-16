@@ -7,11 +7,14 @@ class User
 {
   Long id
   Long version
+  String names
   String email
   String password
   String crypted_password = ""
   String salt = ""
-  String toString() { "$email (#$id)" }
+  //String toString() { "$email (#$id)" }
+  String name = ""
+  String toString() { "$name $email (#$id)" }
   Integer role = 0 // 0 - noone, 1-student, 2-professor, 16-admin
   
     
