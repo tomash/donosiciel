@@ -100,7 +100,7 @@
                 <div class="content">${post.content.encodeAsHTML()}</div>
                 <g:if test="${post.filename}">
                   <div class="file">załączono: 
-                  <a href="${createLinkTo( dir:'uploaded/' + participationInstance?.id, file: post.filename, absolute:true )}" target="_new">${post.filename}</a>
+                  <a href="${createLinkTo( dir:'uploaded/' + participationInstance?.id, file: post.filename, absolute:false )}" target="_new">${post.filename}</a>
                   </div>
                 </g:if>
 
