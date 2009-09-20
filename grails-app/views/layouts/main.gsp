@@ -15,11 +15,25 @@
           <div id="spinner" class="spinner" style="display:none;">
               <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
           </div>	
-          <div class="logo"><img src="${createLinkTo(dir:'images',file:'donosiciel_logo.jpg')}" alt="Donosiciel" /></div>
+          <div class="logo">
+            <!--<img src="${createLinkTo(dir:'images',file:'donosiciel_logo.jpg')}" alt="Donosiciel" />-->
+            <h1>Donosiciel</h1>
+          </div>
         </div>
         
         <div id="left_menu">
-          opcje sropcje
+          <div id="menu_header">Menu Główne</div>
+          <ul id="main_menu_list">
+            <li><g:link controller="exercises">Ćwiczenia i ich opisy</g:link></li>
+            <li><g:link controller="participations">Udziały w ćwiczeniach (instancje)</g:link></li>
+            <li><g:link controller="users">Logowanie i rejestracja</g:link></li>
+            <g:if test="${session.user}">
+              <li><g:link controller="users" action="edit" id="${session.user.id}">Zmiana hasła</g:link></li>
+            </g:if>
+            <g:if test="${session.user?.role == 16}">
+            <li><g:link controller="userAdmin">Administracja użytkownikami</g:link></li>
+          </g:if>
+          </ul>
         </div>
         <div id="content">
           

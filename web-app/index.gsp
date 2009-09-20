@@ -4,7 +4,7 @@
 		<meta name="layout" content="main" />
     </head>
     <body>
-        <h1 style="margin-left:20px;">Donosiciel on Grails ;)</h1>
+        
         
         <h3>Sekcje serwisu</h3>
         <ul id="sections">

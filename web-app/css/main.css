@@ -72,6 +72,15 @@ input:focus, select:focus, textarea:focus {
   overflow: auto;
 }
 
+#header h1
+{
+  width: 500px;
+  float: left;
+  margin: 40px 20px;
+  font-size: 24px;
+  color: #fff;
+}
+
 #header
 {
   width: 100%;
@@ -97,17 +106,50 @@ input:focus, select:focus, textarea:focus {
 
 #left_menu
 {
-  width: 170px;
+  width: 180px;
   float: left;
   overflow: auto;
+  padding-left: 11px;
+}
+
+#left_menu #menu_header
+{
+  height: 21px;
+  width: 175px;
+  background: url('../images/menu_header_bg.jpg');
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  padding-left: 5px;
+}
+
+#left_menu ul#main_menu_list
+{
+  
+  
+}
+
+#left_menu ul#main_menu_list li
+{
+  background: #e3e3e3;
+  color: 000;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #999;
+  padding: 2px 5px;
+}
+
+#left_menu ul#main_menu_list li a
+{
+  font-weight: normal;
+  color: #333;
 }
 
 #content
 {
-  width: 500px;
+  width: 788px;
   float: left;
   overflow: auto;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 /* NAVIGATION MENU */
@@ -230,7 +272,7 @@ th.desc a {
 /* LIST */
 
 .list table {
-  width: 800px;
+  width: 760px;
   border-collapse: collapse;
 }
 
