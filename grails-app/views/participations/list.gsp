@@ -30,20 +30,22 @@
           </thead>
           <tbody>
           <g:each in="${participationInstanceList}" status="i" var="participationInstance">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          
-              <td><g:link action="show" id="${participationInstance.id}">${fieldValue(bean:participationInstance, field:'id')}</g:link></td>
-          
-              <td>${fieldValue(bean:participationInstance, field:'endMark')}</td>
-          
-              <td>${fieldValue(bean:participationInstance, field:'startDateTime')}</td>
-              
-              <td>${fieldValue(bean:participationInstance, field:'user')}</td>
-              
-              <td>
-                <g:link action="show" controller="exercises" id="${participationInstance.exercise?.id}">${fieldValue(bean:participationInstance, field:'exercise')}</g:link></td>
-          
-            </tr>
+            <g:if test="${participationInstance.students.find { it.id == session.user.id } }">
+              <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            
+                <td><g:link action="show" id="${participationInstance.id}">${participationInstance.id}</g:link></td>
+            
+                <td>${participationInstance.endMark}</td>
+            
+                <td>${participationInstance.startDateTime}</td>
+                
+                <td>${participationInstance.user}</td>
+                
+                <td>
+                  <g:link action="show" controller="exercises" id="${participationInstance.exercise?.id}">${fieldValue(bean:participationInstance, field:'exercise')}</g:link></td>
+            
+              </tr>
+            </g:if>
           </g:each>
           </tbody>
         </table>

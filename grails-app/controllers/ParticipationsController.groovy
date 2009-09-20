@@ -1,23 +1,7 @@
+@Mixin(ApplicationController)
 class ParticipationsController {
   
-  def beforeInterceptor = [action:this.&checkUser,except: ['index','list','show']]
-
-  def checkUser() {
-    if(!session.user) 
-    {
-      // i.e. user not logged in
-      session["original_request"] = params
-      redirect(controller:'users',action:'login')
-      return false
-    }
-    if(session.user.role < 2)
-    {
-      // i.e. user is not a teacher or admin
-      flash['message'] = "Próba nieautoryzowanego dostępu"
-      redirect(uri:'/')
-      return false
-    }
-  }
+  def beforeInterceptor = [action:this.&require_teacher_logged_in,except: ['index','list','show']]
 
   def index = { redirect(action:list,params:params) }
 
@@ -31,22 +15,11 @@ class ParticipationsController {
 
   def show = {
     
-    /*sendMail {     
-      to "tomekrs@o2.pl"
-      from "tomekrs@o2.pl"
-      subject "Hello Freddie"     
-      body 'How are you?' 
-    }*/
-    
-    
-    
-    
       def participationInstance = Participation.get( params.id )
       
       if(!participationInstance.authorize(session.user))
       {
-        flash.message = "Próba nieautoryzowanego dostępu"
-        redirect(uri:"/")
+        authorization_denied()
         return false
       }
       

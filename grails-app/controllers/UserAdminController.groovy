@@ -1,22 +1,8 @@
+@Mixin(ApplicationController)
 class UserAdminController {
 
-  def beforeInterceptor = [action:this.&checkUser]
+  def beforeInterceptor = [action:this.&require_admin_logged_in]
 
-  def checkUser() {
-    if(!session.user) 
-    {
-      // i.e. user not logged in
-      redirect(controller:'users',action:'login')
-      return false
-    }
-    if(session.user.role < 16)
-    {
-      // i.e. user is not an admin
-      flash['message'] = "Próba nieautoryzowanego dostępu"
-      redirect(uri:'/')
-      return false
-    }
-  }
   
   def index = { redirect(action:list) }
   

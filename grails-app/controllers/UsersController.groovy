@@ -1,16 +1,7 @@
+@Mixin(ApplicationController)
 class UsersController {
   
-  def beforeInterceptor = [action:this.&checkUser,only: ['edit','change_password']]
-  
-  def checkUser() {
-    if(!session.user) 
-    {
-      // i.e. user not logged in
-      session["original_request"] = params
-      redirect(controller:'users',action:'login')
-      return false
-    }
-  }
+  def beforeInterceptor = [action:this.&require_logged_in,only: ['edit','change_password']]
   
   
   def index = { redirect(action:login) }

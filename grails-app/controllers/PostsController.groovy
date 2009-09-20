@@ -1,3 +1,4 @@
+@Mixin(ApplicationController)
 class PostsController {
   
   def beforeInterceptor = [action:this.&checkUser, except: ['index','list','show']]

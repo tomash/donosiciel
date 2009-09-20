@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Witaj w Donosicielu</title>
+        <title>ILF: Donosiciel</title>
 		<meta name="layout" content="main" />
     </head>
     <body>

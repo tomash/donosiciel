@@ -17,7 +17,7 @@
         </g:if>
         
         <g:if test="${session.user}">
-          Zalogowany jako ${session.user.email}.
+          Zalogowany jako ${session.user.name} (${session.user.email}).
           <g:link controller="users" action="logout">Wyloguj</g:link>
           |
           <g:link controller="users" action="edit" id="${session.user.id}">Zmiana hasła</g:link>
