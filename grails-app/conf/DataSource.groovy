@@ -1,8 +1,6 @@
 dataSource {
 	pooled = true
 	driverClassName = "com.mysql.jdbc.Driver"
-	username = "root"
-	password = "root"
 }
 hibernate {
     cache.use_second_level_cache=true
@@ -15,18 +13,24 @@ environments {
 		dataSource {
 			dbCreate = "update" // one of 'create', 'create-drop','update'
 			url = "jdbc:mysql://localhost/donosiciel_development?useUnicode=true&characterEncoding=UTF-8"
+      username = "root"
+      password = "root"
 		}
 	}
 	test {
 		dataSource {
 			dbCreate = "update"
 			url = "jdbc:mysql://localhost/donosiciel_test?useUnicode=true&characterEncoding=UTF-8"
+      username = "root"
+      password = "root"
 		}
 	}
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:mysql://localhost/donosiciel_prod"
+			url = "jdbc:mysql://localhost:3306/donosiciel_prod?useUnicode=true&characterEncoding=UTF-8"
+      username = "donosiciel"
+      password = "donosiciel"
 		}
 	}
 }
