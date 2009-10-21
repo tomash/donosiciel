@@ -28,7 +28,8 @@ environments {
 	production {
 		dataSource {
 			dbCreate = "update"
-			url = "jdbc:mysql://localhost:3306/donosiciel_prod?useUnicode=true&characterEncoding=UTF-8"
+			url = "jdbc:mysql://ilf.if.pw.edu.pl:3306/donosiciel?useUnicode=true&characterEncoding=UTF-8"
+      //url = "jdbc:mysql://localhost/donosiciel_development?useUnicode=true&characterEncoding=UTF-8"
       username = "donosiciel"
       password = "donosiciel"
 		}
