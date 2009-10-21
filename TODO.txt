@@ -26,6 +26,7 @@ POZOSTAJĄ:
 11) Heisenbug: przelogowywanie
 12) Upload plików (niedostępne w Tomcacie -- jakby się nie wrzucały)
 13) Sensowniej zrobić filtrowanie udziałów
+  DONE
 
 filtrowanie udziałów:
 - jako teacher: jestem prowadzący

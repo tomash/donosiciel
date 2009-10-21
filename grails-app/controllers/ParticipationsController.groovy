@@ -9,8 +9,13 @@ class ParticipationsController {
   static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
   def list = {
-      if(!params.max) params.max = 10
-      [ participationInstanceList: Participation.list( params ) ]
+    require_logged_in()
+    
+    if(!params.max) params.max = 10
+    def participations = Participation.executeQuery("SELECT p FROM Participation as p INNER JOIN p.students AS s WHERE s.id=" + session.user.id)
+    //[ participationInstanceList: Participation.list( params ) ]
+    [ participationInstanceList: participations ]
+    
   }
 
   def show = {
