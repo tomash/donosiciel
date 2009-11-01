@@ -37,7 +37,33 @@
     </div>
     <div class="buttons">
       <span class="formButton">
-        <input type="submit" value="Zapisz"></input>
+        <input type="submit" value="Zmień Hasło"></input>
+      </span>
+      
+    </div>
+  </g:form>
+  </div>
+  <br class="clear"/>
+  <div class="body">
+    <h1>Zmiana danych</h1>
+    
+    <g:form action="update_personal" method="post" id="${userInstance.id}">
+    <div class="dialog">
+      <table class="userForm">
+        <tr class='prop'>
+          <td valign='top' style='text-align:left;' width='20%'>
+            <label for='name'>Imię i nazwisko:</label>
+          </td>
+          <td valign='top' style='text-align:left;' width='80%'>
+            <input id="name" type='text' name='name' value="${userInstance.name}"/>
+          </td>
+        </tr>
+        
+      </table>
+    </div>
+    <div class="buttons">
+      <span class="formButton">
+        <input type="submit" value="Zmień imię i nazwisko"></input>
       </span>
       
     </div>

@@ -69,33 +69,7 @@ class UsersController {
     userInstance.properties = params
     return ['userInstance':userInstance]
   }
-/*
-  def save = 
-  { 
-    params.remove('role') // nice try, fuckers!
-    def user = new User(params) 
-    if (params.password != params.password_confirmation) 
-    { 
-      flash.message = "Hasło i potwierdzenie się nie zgadzają." 
-      redirect(action:create) 
-    }
-    else 
-    { 
-      user.register_magic()
-      if (user.save()) 
-      {
-        flash.message = "Rejestracja udana, możesz się zalogować!"
-        redirect(uri:'/') 
-      } 
-      else 
-      { 
-        flash.user = user
-        render(view:'create',model:[user:user])
-        //redirect(action:create) 
-      } 
-    } 
-  }
-*/
+
   def save = 
   { 
     params.remove('role') // nice try, fuckers!
@@ -155,6 +129,33 @@ class UsersController {
     if (valid && userInstance.save()) 
     {
         flash.message = "Hasło zostało zmienione"
+        redirect(uri:'/') 
+    }
+    else 
+    { 
+        flash.user = userInstance
+        render(view:'edit',model:[user:userInstance])
+    }
+    
+  }
+  
+  def update_personal = 
+  {
+    def userInstance = User.get(params.id)
+    def valid = userInstance.validate()
+
+    if(!userInstance.authorize(session.user))
+    {
+      flash.message = "Próba nieautoryzowanego dostępu"
+      redirect(uri:"/")
+      return false
+    }
+    
+    userInstance.name = params.name
+    if (valid && userInstance.save()) 
+    {
+        session.user.name = userInstance.name
+        flash.message = "Imię zostało zmienione"
         redirect(uri:'/') 
     }
     else 

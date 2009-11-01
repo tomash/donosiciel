@@ -367,6 +367,8 @@ th.desc a {
     width: 100%;
 }
 
+
+
 .prop {
     padding: 5px;
 }
@@ -438,6 +440,11 @@ h3
 input#student_email
 {
   width: 400px;
+}
+
+input#name
+{
+  width: 500px;
 }
 
 ul#students_list

@@ -57,6 +57,8 @@
           <g:layoutBody />
         
         <br class="clear" />
+        </div>
+        <br class="clear" />
         <div id="footer">
           <div class="left"> </div>
           <div class="right"> </div>
