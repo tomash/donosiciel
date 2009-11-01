@@ -58,6 +58,8 @@ input:focus, select:focus, textarea:focus {
     border: 1px solid #b2d1ff;
 }
 
+.clear { clear:both; }
+
 .body {
     float: left;
     margin: 0 15px 10px 15px;
@@ -88,7 +90,7 @@ input:focus, select:focus, textarea:focus {
   background: url('../images/header_bg.jpg');
 }
 
-#header #left
+#header .left
 {
   height: 129px;
   width: 26px;
@@ -96,7 +98,7 @@ input:focus, select:focus, textarea:focus {
   float: left;
 }
 
-#header #right
+#header .right
 {
   height: 129px;
   width: 26px;
@@ -156,6 +158,29 @@ input:focus, select:focus, textarea:focus {
 {
   width: 440px;
   margin-left: 0;
+}
+
+#footer
+{
+  width: 100%;
+  height: 86px;
+  background: url('../images/footer_bg.jpg');
+}
+
+#footer .left
+{
+  height: 86px;
+  width: 24px;
+  background: url('../images/footer_left.jpg');
+  float: left;
+}
+
+#footer .right
+{
+  height: 86px;
+  width: 24px;
+  background: url('../images/footer_right.jpg');
+  float: right;
 }
 
 /* NAVIGATION MENU */

@@ -10,8 +10,8 @@
     <body>
       <div id="wrapper">
         <div id="header">
-          <div id="left"> </div>
-          <div id="right"> </div>
+          <div class="left"> </div>
+          <div class="right"> </div>
           <div id="spinner" class="spinner" style="display:none;">
               <img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
           </div>	
@@ -35,8 +35,8 @@
           </g:if>
           </ul>
         </div>
+        
         <div id="content">
-          
           <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
           </g:if>
@@ -55,7 +55,12 @@
           </g:else>
           
           <g:layoutBody />
-        <div id="content">
+        
+        <br class="clear" />
+        <div id="footer">
+          <div class="left"> </div>
+          <div class="right"> </div>
+        </div>
       </div>
     </body>	
 </html>

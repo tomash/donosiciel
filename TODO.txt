@@ -24,9 +24,11 @@
 POZOSTAJĄ:
 9) Edycja profilu (imię, nazwisko itd.)
 11) Heisenbug: przelogowywanie
+  DONE
 12) Upload plików (niedostępne w Tomcacie -- jakby się nie wrzucały)
 13) Sensowniej zrobić filtrowanie udziałów
   DONE
+14) Layout: dół strony
 
 filtrowanie udziałów:
 - jako teacher: jestem prowadzący
