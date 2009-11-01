@@ -1,3 +1,4 @@
 stacktrace.log
 web-app/uploaded/*
 *.war
+test/reports/*
