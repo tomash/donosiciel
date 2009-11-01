@@ -24,9 +24,12 @@ class UsersController {
         flash.message = "Użytkownik ${user.email} zalogowany"
         session.user = user
         if(session && session["original_request"])
+        {
           redirect(controller:session["original_request"]["controller"],
             action:session["original_request"]["action"],
             params:session["original_request"])
+          session["original_request"] = null
+        }
         else
           redirect(uri:'/')
       }

@@ -12,7 +12,7 @@ class ParticipationsController {
     require_logged_in()
     
     if(!params.max) params.max = 10
-    def participations = Participation.executeQuery("SELECT p FROM Participation as p INNER JOIN p.students AS s WHERE s.id=" + session.user.id)
+      def participations = Participation.executeQuery("SELECT p FROM Participation as p INNER JOIN p.students AS s WHERE s.id=? OR p.user=?", [session.user.id, session.user])
     //[ participationInstanceList: Participation.list( params ) ]
     [ participationInstanceList: participations ]
     

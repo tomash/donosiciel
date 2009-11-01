@@ -30,5 +30,7 @@ POZOSTAJĄ:
 
 filtrowanie udziałów:
 - jako teacher: jestem prowadzący
+  DONE
 - jako student: jestem dopisany
+  DONE
 - oddzielać aktywne od nieaktywnych/starych (parametr)

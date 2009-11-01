@@ -152,6 +152,12 @@ input:focus, select:focus, textarea:focus {
   margin-left: 10px;
 }
 
+#content textarea
+{
+  width: 440px;
+  margin-left: 0;
+}
+
 /* NAVIGATION MENU */
 
 .nav {
