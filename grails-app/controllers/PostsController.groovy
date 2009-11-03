@@ -19,79 +19,7 @@ class PostsController {
       return false
     }
   }
-/*
-  def index = { redirect(action:list,params:params) }
 
-  // the delete, save and update actions only accept POST requests
-  def allowedMethods = [delete:'POST', save:'POST', update:'POST']
-
-  def list = {
-      if(!params.max) params.max = 10
-      [ postInstanceList: Post.list( params ) ]
-  }
-
-  def show = {
-      def postInstance = Post.get( params.id )
-
-      if(!postInstance) {
-          flash.message = "Post not found with id ${params.id}"
-          redirect(action:list)
-      }
-      else { return [ postInstance : postInstance ] }
-  }
-
-  def delete = {
-      def postInstance = Post.get( params.id )
-      if(postInstance) {
-          postInstance.delete()
-          flash.message = "Post ${params.id} deleted"
-          redirect(action:list)
-      }
-      else {
-          flash.message = "Post not found with id ${params.id}"
-          redirect(action:list)
-      }
-  }
-*/
-/*
-  def edit = {
-      def postInstance = Post.get( params.id )
-
-      if(!postInstance) {
-          flash.message = "Post not found with id ${params.id}"
-          redirect(action:list)
-      }
-      else {
-          return [ postInstance : postInstance ]
-      }
-  }
-*/
-/*
-  def update = {
-      def postInstance = Post.get( params.id )
-      if(postInstance) {
-          postInstance.properties = params
-          if(!postInstance.hasErrors() && postInstance.save()) {
-              flash.message = "Post ${params.id} updated"
-              redirect(action:show,id:postInstance.id)
-          }
-          else {
-              render(view:'edit',model:[postInstance:postInstance])
-          }
-      }
-      else {
-          flash.message = "Post not found with id ${params.id}"
-          redirect(action:edit,id:params.id)
-      }
-  }
-*/
-/*
-  def create = {
-      def postInstance = new Post()
-      postInstance.properties = params
-      return ['postInstance':postInstance]
-  }
-*/
   def save = {
       
       def postInstance = new Post(params)      
@@ -103,13 +31,14 @@ class PostsController {
       {
         String timestamp = new Date().getTime().toString()
         String fname = session.user.id + '_' + timestamp + '_' + f.getOriginalFilename()
-        String fpath = grailsApplication.config.uploaded.location.toString() + File.separatorChar + postInstance.participation.id + File.separatorChar
+        //String fpath = grailsApplication.config.uploaded.location.toString() + postInstance.participation.id + File.separatorChar
+        String fpath = grailsAttributes.getApplicationContext().getResource("/uploaded/"  + postInstance.participation.id + File.separatorChar).getFile().toString()
         new File(fpath).mkdirs()
         
         String path = fpath + File.separatorChar + fname
         
         postInstance.filename = fname
-        f.transferTo( new File( path ) )								             			     	
+        f.transferTo(new File(path))								             			     	
       }
       /*
       else 

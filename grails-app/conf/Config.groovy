@@ -72,6 +72,7 @@ log4j {
 
 //other config
 uploaded.location = "web-app/uploaded/"
+//uploaded.location = grailsAttributes.getApplicationContext().getResource("/uploaded/").toString()
 
 
 grails {
